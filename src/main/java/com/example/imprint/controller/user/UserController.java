@@ -31,6 +31,7 @@ public class UserController {
     // 로그인
     @PostMapping("/login")
     public ResponseEntity<String> login(@RequestBody @Valid UserLoginRequestDto loginDto, HttpServletRequest request) {
+
         // 서비스에서 로그인 검증
         userService.login(loginDto.getEmail(), loginDto.getPassword());
 

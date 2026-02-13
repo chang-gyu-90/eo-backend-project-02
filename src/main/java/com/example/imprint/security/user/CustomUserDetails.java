@@ -32,6 +32,10 @@ public class CustomUserDetails implements UserDetails {
         return user.getEmail();
     }
 
+    public String getNickname() {
+        return user.getNickname();
+    }
+
     // 계정 상태 관리 (모두 true로 설정해야 로그인이 됩니다)
     @Override
     public boolean isAccountNonExpired() { return true; }
