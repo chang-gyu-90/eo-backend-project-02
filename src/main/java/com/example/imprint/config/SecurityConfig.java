@@ -26,10 +26,12 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .csrf(csrf -> csrf.disable())
-                .headers(headers -> headers.frameOptions(f -> f.disable()))
+                .headers(headers -> headers.frameOptions(frame -> frame.sameOrigin()))
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/css/**", "/js/**", "/images/**", "/favicon.ico").permitAll()
                         .requestMatchers("/api/mail/**", "/account/**").permitAll()
+                        .requestMatchers("/api/boards/**").permitAll()
+                        .requestMatchers("/h2-console/**").permitAll()
                         .requestMatchers("/", "/test.html", "/loginForm.html", "/loginForm", "/main.html").permitAll()
                         .anyRequest().authenticated()
                 )
