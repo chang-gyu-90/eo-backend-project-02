@@ -28,6 +28,13 @@ public class BoardEntity extends BaseTimeEntity {
      // 빌더 패턴 사용
     public BoardEntity(Long id, String name, UserEntity creator, boolean isPrivate) {
         this.id = id;
+    // 게시판 관리자 추가
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "manager_id")
+    private UserEntity manager;
+
+    @Builder // 빌더 패턴 사용
+    public BoardEntity(String name, UserEntity creator, boolean isPrivate) {
         this.name = name;
         this.creator = creator;
     }

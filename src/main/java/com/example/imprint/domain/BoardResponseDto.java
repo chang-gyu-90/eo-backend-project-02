@@ -15,6 +15,11 @@ public class BoardResponseDto {
     private String creatorName;
     private String creatorNickname;
 
+    // 매니저 정보
+    private Long managerId;
+    private String managerName;
+    private String managerNickname;
+
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
@@ -22,6 +27,13 @@ public class BoardResponseDto {
     public BoardResponseDto(BoardEntity boardEntity) {
         this.id = boardEntity.getId();
         this.name = boardEntity.getName();
+
+        // 매니저 정보
+        if (boardEntity.getManager() != null) {
+            this.managerId = boardEntity.getManager().getId();
+            this.managerName = boardEntity.getManager().getName();
+            this.managerNickname = boardEntity.getManager().getNickname();
+        }
 
         // 만든이 정보 추출 (매니저로 바꾼다.)
         this.creatorId = boardEntity.getCreator().getId();
