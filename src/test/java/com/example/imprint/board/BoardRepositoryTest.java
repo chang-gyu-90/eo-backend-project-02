@@ -1,4 +1,4 @@
-package com.example.imprint.test;
+package com.example.imprint.board;
 
 import com.example.imprint.domain.BoardEntity;
 import com.example.imprint.domain.user.UserEntity;
@@ -10,6 +10,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
@@ -17,6 +19,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @Slf4j
 @SpringBootTest
+@ActiveProfiles("test")
+@Transactional
 class BoardRepositoryTest {
 
     @Autowired
@@ -73,5 +77,25 @@ class BoardRepositoryTest {
         // then
         assertThat(found).isPresent();
         assertThat(found.get().getName()).isEqualTo("개발 게시판");
+    }
+
+    @Test
+    @DisplayName("게시판 삭제 테스트")
+    void findCreator() {
+        // given
+        BoardEntity board = BoardEntity.builder()
+                .name("삭제될 게시판")
+                .creator(testUser)
+                .build();
+
+        // 저장
+        BoardEntity saved = boardRepository.save(board);
+
+        // when
+        boardRepository.delete(saved);
+
+        // then
+        Optional<BoardEntity> deleted = boardRepository.findById(saved.getId());
+        assertThat(deleted).isEmpty();
     }
 }

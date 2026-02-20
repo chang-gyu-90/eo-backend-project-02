@@ -1,6 +1,6 @@
 package com.example.imprint.controller;
 
-import com.example.imprint.domain.board.BoardEntity;
+import com.example.imprint.domain.BoardEntity;
 import com.example.imprint.domain.user.UserEntity;
 import com.example.imprint.domain.post.PostRequestDto;
 import com.example.imprint.domain.post.PostResponseDto;

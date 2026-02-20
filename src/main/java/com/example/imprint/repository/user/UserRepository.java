@@ -1,7 +1,10 @@
 package com.example.imprint.repository.user;
 
+import com.example.imprint.domain.message.MessageEntity;
 import com.example.imprint.domain.user.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.List;
 import java.util.Optional;
 
 //JpaRepository를 상속받으면, 기본적인 save(저장), findById(조회), delete(삭제) 메서드를 구현 없이 사용가능
@@ -18,4 +21,7 @@ public interface UserRepository extends JpaRepository<UserEntity, Long> {
 
     //별명 가져오기(쪽지용)
     Optional<UserEntity> findByNickname(String nickname);
+
+    //관리자찾음
+    Optional<UserEntity> findByRole(String role);
 }

@@ -1,11 +1,13 @@
 package com.example.imprint.domain;
 
 import com.example.imprint.domain.user.UserEntity;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Getter
-@NoArgsConstructor
+@Setter
+@AllArgsConstructor
 public class BoardRequestDto {
 
     private String name; // 게시판 이름
